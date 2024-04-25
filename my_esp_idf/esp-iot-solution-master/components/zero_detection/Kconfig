@@ -1,0 +1,8 @@
+menu "Zero Cross Detection"
+
+    config USE_GPTIMER
+        bool "USE GPTIMER"
+        default "n"
+        help
+            Use GPTimer instead of ESPTimer.
+endmenu

@@ -1,0 +1,70 @@
+menu "Example Configuration"
+
+    choice EXAMPLE_OTA_SECURITY_VERSION
+        bool "Protocomm security version"
+        default EXAMPLE_OTA_SECURITY_VERSION_2
+        help
+            OTA component offers 3 security versions.
+            The example offers a choice between security version 1 and 2.
+
+        config EXAMPLE_OTA_SECURITY_VERSION_1
+            bool "Security version 1"
+            select ESP_PROTOCOMM_SUPPORT_SECURITY_VERSION_1
+
+        config EXAMPLE_OTA_SECURITY_VERSION_2
+            bool "Security version 2"
+            select ESP_PROTOCOMM_SUPPORT_SECURITY_VERSION_2
+    endchoice
+
+    choice EXAMPLE_OTA_MODE
+        bool "Security version 2 mode"
+        depends on EXAMPLE_OTA_SECURITY_VERSION_2
+        default EXAMPLE_OTA_SEC2_DEV_MODE
+
+        config EXAMPLE_OTA_SEC2_DEV_MODE
+            bool "Security version 2 development mode"
+            depends on EXAMPLE_OTA_SECURITY_VERSION_2
+            help
+                This enables the development mode for
+                security version 2.
+                Please note that this mode is NOT recommended for production purpose.
+
+        config EXAMPLE_OTA_SEC2_PROD_MODE
+            bool "Security version 2 production mode"
+            depends on EXAMPLE_OTA_SECURITY_VERSION_2
+            help
+                This enables the production mode for
+                security version 2.
+    endchoice
+
+    choice EXAMPLE_OTA_TYPE
+        prompt "Type of OTA"
+        default EXAMPLE_OTA_WITHOUT_SECURITY
+
+        config EXAMPLE_OTA_WITHOUT_SECURITY
+            bool "Use OTA without security"
+            help
+                This transfers file without any security using OTA
+
+        config EXAMPLE_USE_PROTOCOMM
+            bool "Use protocomm layer for security"
+            depends on BT_NIMBLE_ENABLED
+            help
+                This enables protocomm level security to transfer file via OTA
+
+        config EXAMPLE_USE_PRE_ENC_OTA
+            bool "Use Pre-Encrypted OTA"
+            depends on BT_NIMBLE_ENABLED
+            help
+                This enables transferring pre-encrypted file via OTA
+    endchoice
+
+    config EXAMPLE_EXTENDED_ADV
+        bool
+        default y if SOC_ESP_NIMBLE_CONTROLLER
+        select BT_NIMBLE_EXT_ADV
+        prompt "Enable Extended Adv"
+        depends on BT_NIMBLE_ENABLED && !IDF_TARGET_ESP32
+        help
+            Use this option to enable extended advertising in the example
+endmenu

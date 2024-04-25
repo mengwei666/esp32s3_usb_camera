@@ -1,0 +1,627 @@
+variables:
+  # There is no target-test-env-v4.4
+  DOCKER_TARGET_TEST_v5_0_ENV_IMAGE: "$CI_DOCKER_REGISTRY/target-test-env-v5.0:3"
+  DOCKER_TARGET_TEST_v5_1_ENV_IMAGE: "$CI_DOCKER_REGISTRY/target-test-env-v5.1:1"
+
+.test_template: &test_template
+  image: DOCKER_TARGET_TEST_v5_0_ENV_IMAGE
+  stage: target_test
+  timeout: 4 hour
+  variables:
+    GIT_DEPTH: 1
+    SUBMODULES_TO_FETCH: "none"
+  cache:
+    # Usually do not need submodule-cache in target_test
+    - key: pip-cache
+      paths:
+        - .cache/pip
+      policy: pull
+
+.pytest_template:
+  <<: *test_template
+  artifacts:
+    when: always
+    paths:
+      - XUNIT_RESULT.xml
+      - pytest_embedded_log/
+    reports:
+      junit: XUNIT_RESULT.xml
+    expire_in: 4 days
+  variables:
+    TEST_TARGET: 'esp32'
+    TEST_FOLDER: '.'
+    TEST_ENV: 'generic'
+  script:
+    - pip install -r tools/requirements/requirement.pytest.txt
+    - pytest ${TEST_FOLDER} --target ${TEST_TARGET} --env ${TEST_ENV} --junitxml=XUNIT_RESULT.xml
+
+components_test_aht20:
+  extends:
+    - .pytest_template
+    - .rules:build:components_sensors_humiture_aht20_test_apps
+  needs:
+    - job: "build_components_sensors_humiture_aht20_test_apps"
+      artifacts: true
+      optional: false
+  parallel:
+    matrix:
+      - IDF_TARGET: esp32s3
+        IDF_VERSION: "4.4"
+        ENV_TAG: "esp-box-3"
+      - IDF_TARGET: esp32s3
+        IDF_VERSION: "5.0"
+        ENV_TAG: "esp-box-3"
+  tags:
+    - ${IDF_TARGET}
+    - ${ENV_TAG}
+  image: $DOCKER_TARGET_TEST_v5_1_ENV_IMAGE
+  variables:
+    TEST_TARGET: ${IDF_TARGET}
+    TEST_FOLDER: components/sensors/humiture/aht20
+    TEST_ENV: ${ENV_TAG}
+
+components_test_at581x:
+  extends:
+    - .pytest_template
+    - .rules:build:components_sensors_radar_at581x_test_apps
+  needs:
+    - job: "build_components_sensors_radar_at581x_test_apps"
+      artifacts: true
+      optional: false
+  parallel:
+    matrix:
+      - IDF_TARGET: esp32s3
+        IDF_VERSION: "4.4"
+        ENV_TAG: "esp-box-3"
+      - IDF_TARGET: esp32s3
+        IDF_VERSION: "5.0"
+        ENV_TAG: "esp-box-3"
+  tags:
+    - ${IDF_TARGET}
+    - ${ENV_TAG}
+  image: $DOCKER_TARGET_TEST_v5_1_ENV_IMAGE
+  variables:
+    TEST_TARGET: ${IDF_TARGET}
+    TEST_FOLDER: components/sensors/radar
+    TEST_ENV: ${ENV_TAG}
+
+components_test_esp_msc_ota:
+  extends:
+    - .pytest_template
+    - .rules:build:components_usb_esp_msc_ota_test_apps
+  needs:
+    - job: "build_components_usb_esp_msc_ota_test_apps"
+      artifacts: true
+      optional: false
+  parallel:
+    matrix:
+      - IDF_TARGET: esp32s3
+        IDF_VERSION: "5.1"
+        ENV_TAG: "msc-ota"
+  tags:
+    - ${IDF_TARGET}
+    - ${ENV_TAG}
+  image: $DOCKER_TARGET_TEST_v5_1_ENV_IMAGE
+  variables:
+    TEST_TARGET: ${IDF_TARGET}
+    TEST_FOLDER: components/usb/esp_msc_ota
+    TEST_ENV: ${ENV_TAG}
+
+components_test_usb_camera:
+  extends:
+    - .pytest_template
+    - .rules:build:components_usb_usb_stream_test
+  needs:
+    - job: "build_components_usb_usb_stream_test_apps"
+      artifacts: true
+      optional: true
+  retry:
+    max: 2
+  parallel:
+    matrix:
+      - IDF_TARGET: esp32s2
+        IDF_VERSION: "4.4"
+        ENV_TAG: usb_camera
+      - IDF_TARGET: esp32s2
+        IDF_VERSION: "5.0"
+        ENV_TAG: usb_camera
+      - IDF_TARGET: esp32s3
+        IDF_VERSION: "4.4"
+        ENV_TAG: usb_camera
+      - IDF_TARGET: esp32s3
+        IDF_VERSION: "5.0"
+        ENV_TAG: usb_camera
+      - IDF_TARGET: esp32s3
+        IDF_VERSION: "4.4"
+        ENV_TAG: usb-otg_camera
+      - IDF_TARGET: esp32s3
+        IDF_VERSION: "4.4"
+        ENV_TAG: usb_camera_s3_eye
+      - IDF_TARGET: esp32s2
+        IDF_VERSION: "4.4"
+        ENV_TAG: usb_camera_isoc
+  tags:
+    - ${IDF_TARGET}
+    - ${ENV_TAG}
+  image: $DOCKER_TARGET_TEST_v5_1_ENV_IMAGE
+  variables:
+    TEST_TARGET: ${IDF_TARGET}
+    TEST_FOLDER: components/usb/usb_stream
+    TEST_ENV: ${ENV_TAG}
+
+components_test_iot_usbh:
+  extends:
+    - .pytest_template
+    - .rules:build:components_usb_iot_usbh_test
+  needs:
+    - job: "build_components_usb_iot_usbh_test_apps"
+      artifacts: true
+      optional: true
+  retry:
+    max: 2
+  parallel:
+    matrix:
+      - IDF_TARGET: esp32s3
+        IDF_VERSION: "4.4"
+        ENV_TAG: usb_4g
+      - IDF_TARGET: esp32s3
+        IDF_VERSION: "5.0"
+        ENV_TAG: usb_4g
+  tags:
+    - ${IDF_TARGET}
+    - ${ENV_TAG}
+  image: $DOCKER_TARGET_TEST_v5_1_ENV_IMAGE
+  variables:
+    TEST_TARGET: ${IDF_TARGET}
+    TEST_FOLDER: components/usb/iot_usbh
+    TEST_ENV: ${ENV_TAG}
+
+components_test_iot_usbh_cdc:
+  extends:
+    - .pytest_template
+    - .rules:build:components_usb_iot_usbh_cdc_test
+  needs:
+    - job: "build_components_usb_iot_usbh_cdc_test_apps"
+      artifacts: true
+      optional: true
+  retry:
+    max: 2
+  parallel:
+    matrix:
+      - IDF_TARGET: esp32s3
+        IDF_VERSION: "4.4"
+        ENV_TAG: usb_4g
+      - IDF_TARGET: esp32s3
+        IDF_VERSION: "5.0"
+        ENV_TAG: usb_4g
+  tags:
+    - ${IDF_TARGET}
+    - ${ENV_TAG}
+  image: $DOCKER_TARGET_TEST_v5_1_ENV_IMAGE
+  variables:
+    TEST_TARGET: ${IDF_TARGET}
+    TEST_FOLDER: components/usb/iot_usbh_cdc
+    TEST_ENV: ${ENV_TAG}
+
+components_test_ir_learn:
+  extends:
+    - .pytest_template
+    - .rules:build:components_ir_ir_learn_test_apps
+  needs:
+    - job: "build_components_ir_ir_learn_test_apps"
+      artifacts: true
+      optional: false
+  parallel:
+    matrix:
+      - IDF_TARGET: esp32s3
+        IDF_VERSION: "5.0"
+        ENV_TAG: "esp-box-3"
+  tags:
+    - ${IDF_TARGET}
+    - ${ENV_TAG}
+  image: $DOCKER_TARGET_TEST_v5_1_ENV_IMAGE
+  variables:
+    TEST_TARGET: ${IDF_TARGET}
+    TEST_FOLDER: components/ir/ir_learn
+    TEST_ENV: ${ENV_TAG}
+
+components_test_button:
+  extends:
+    - .pytest_template
+    - .rules:build:components_button_test_apps
+  needs:
+    - job: "build_components_button_test_apps"
+      artifacts: true
+      optional: false
+  parallel:
+    matrix:
+      - IDF_TARGET: esp32s3
+        IDF_VERSION: "4.4"
+        ENV_TAG: "button"
+      - IDF_TARGET: esp32s3
+        IDF_VERSION: "5.0"
+        ENV_TAG: "button"
+  tags:
+    - ${IDF_TARGET}
+    - ${ENV_TAG}
+  image: $DOCKER_TARGET_TEST_v5_1_ENV_IMAGE
+  variables:
+    TEST_TARGET: ${IDF_TARGET}
+    TEST_FOLDER: components/button
+    TEST_ENV: ${ENV_TAG}
+
+components_test_led_indicator:
+  extends:
+    - .pytest_template
+    - .rules:build:components_led_led_indicator_test_apps
+  needs:
+    - job: "build_components_led_led_indicator_test_apps"
+      artifacts: true
+      optional: true
+  parallel:
+    matrix:
+        - IDF_VERSION: "4.4"
+        - IDF_VERSION: "5.0"
+  tags:
+    - esp32s3
+    - led_indicator
+  image: $DOCKER_TARGET_TEST_v5_1_ENV_IMAGE
+  variables:
+    TEST_TARGET: esp32s3
+    TEST_FOLDER: components/led/led_indicator
+    TEST_ENV: led_indicator
+
+components_test_openai:
+  extends:
+    - .pytest_template
+    - .rules:build:components_openai_test_apps
+  needs:
+    - job: "build_components_openai_test_apps"
+      artifacts: true
+      optional: true
+  parallel:
+    matrix:
+        - IDF_VERSION: "4.4"
+        - IDF_VERSION: "5.0"
+  tags:
+    - esp32s3
+    - openai
+  image: $DOCKER_TARGET_TEST_v5_1_ENV_IMAGE
+  variables:
+    TEST_TARGET: esp32s3
+    TEST_FOLDER: components/openai
+
+components_test_esp_lcd_gc9b71:
+  extends:
+    - .pytest_template
+    - .rules:build:components_display_lcd_esp_lcd_gc9b71_test_apps
+  needs:
+    - job: "build_components_display_lcd_esp_lcd_gc9b71_test_apps"
+      artifacts: true
+      optional: false
+  parallel:
+    matrix:
+        - IDF_VERSION: "5.1"
+  tags:
+    - esp32s3
+    - esp32s3_lcd_ev
+  image: $DOCKER_TARGET_TEST_v5_1_ENV_IMAGE
+  variables:
+    TEST_TARGET: esp32s3
+    TEST_FOLDER: components/display/lcd/esp_lcd_gc9b71
+    TEST_ENV: esp32_s3_lcd_ev_board
+
+components_test_esp_lcd_panel_io_additions:
+  extends:
+    - .pytest_template
+    - .rules:build:components_display_lcd_esp_lcd_panel_io_additions_test_apps
+  needs:
+    - job: "build_components_display_lcd_esp_lcd_panel_io_additions_test_apps"
+      artifacts: true
+      optional: false
+  parallel:
+    matrix:
+        - IDF_VERSION: "4.4"
+        - IDF_VERSION: "5.0"
+  tags:
+    - esp32s3
+    - esp32s3_lcd_ev
+  image: $DOCKER_TARGET_TEST_v5_1_ENV_IMAGE
+  variables:
+    TEST_TARGET: esp32s3
+    TEST_FOLDER: components/display/lcd/esp_lcd_panel_io_additions
+    TEST_ENV: esp32_s3_lcd_ev_board
+
+components_test_esp_lcd_sh8601:
+  extends:
+    - .pytest_template
+    - .rules:build:components_display_lcd_esp_lcd_sh8601_test_apps
+  needs:
+    - job: "build_components_display_lcd_esp_lcd_sh8601_test_apps"
+      artifacts: true
+      optional: false
+  parallel:
+    matrix:
+        - IDF_VERSION: "5.1"
+  tags:
+    - esp32s3
+    - esp32s3_lcd_ev
+  image: $DOCKER_TARGET_TEST_v5_1_ENV_IMAGE
+  variables:
+    TEST_TARGET: esp32s3
+    TEST_FOLDER: components/display/lcd/esp_lcd_sh8601
+    TEST_ENV: esp32_s3_lcd_ev_board
+
+components_test_esp_lcd_spd2010:
+  extends:
+    - .pytest_template
+    - .rules:build:components_display_lcd_esp_lcd_spd2010_test_apps
+  needs:
+    - job: "build_components_display_lcd_esp_lcd_spd2010_test_apps"
+      artifacts: true
+      optional: false
+  parallel:
+    matrix:
+        - IDF_VERSION: "5.1"
+  tags:
+    - esp32s3
+    - esp32s3_lcd_ev
+  image: $DOCKER_TARGET_TEST_v5_1_ENV_IMAGE
+  variables:
+    TEST_TARGET: esp32s3
+    TEST_FOLDER: components/display/lcd/esp_lcd_spd2010
+    TEST_ENV: esp32_s3_lcd_ev_board
+
+components_test_esp_lcd_st7701:
+  extends:
+    - .pytest_template
+    - .rules:build:components_display_lcd_esp_lcd_st7701_test_apps
+  needs:
+    - job: "build_components_display_lcd_esp_lcd_st7701_test_apps"
+      artifacts: true
+      optional: false
+  parallel:
+    matrix:
+        - IDF_VERSION: "5.1"
+  tags:
+    - esp32s3
+    - esp32s3_lcd_ev
+  image: $DOCKER_TARGET_TEST_v5_1_ENV_IMAGE
+  variables:
+    TEST_TARGET: esp32s3
+    TEST_FOLDER: components/display/lcd/esp_lcd_st7701
+    TEST_ENV: esp32_s3_lcd_ev_board
+
+components_test_esp_lcd_st77903_rgb:
+  extends:
+    - .pytest_template
+    - .rules:build:components_display_lcd_esp_lcd_st77903_rgb_test_apps
+  needs:
+    - job: "build_components_display_lcd_esp_lcd_st77903_rgb_test_apps"
+      artifacts: true
+      optional: false
+  parallel:
+    matrix:
+        - IDF_VERSION: "5.1"
+  tags:
+    - esp32s3
+    - esp32s3_lcd_ev
+  image: $DOCKER_TARGET_TEST_v5_1_ENV_IMAGE
+  variables:
+    TEST_TARGET: esp32s3
+    TEST_FOLDER: components/display/lcd/esp_lcd_st77903_rgb
+    TEST_ENV: esp32_s3_lcd_ev_board
+
+components_test_esp_lcd_nv3022b:
+  extends:
+    - .pytest_template
+    - .rules:build:components_display_lcd_esp_lcd_nv3022b_test_apps
+  needs:
+    - job: "build_components_display_lcd_esp_lcd_nv3022b_test_apps"
+      artifacts: true
+      optional: false
+  parallel:
+    matrix:
+        - IDF_VERSION: "5.1"
+  tags:
+    - esp32s3
+    - esp32s3_lcd_ev
+  image: $DOCKER_TARGET_TEST_v5_1_ENV_IMAGE
+  variables:
+    TEST_TARGET: esp32s3
+    TEST_FOLDER: components/display/lcd/esp_lcd_nv3022b
+    TEST_ENV: esp32_s3_lcd_ev_board
+
+components_test_esp_lcd_st77916:
+  extends:
+    - .pytest_template
+    - .rules:build:components_display_lcd_esp_lcd_st77916_test_apps
+  needs:
+    - job: "build_components_display_lcd_esp_lcd_st77916_test_apps"
+      artifacts: true
+      optional: false
+  parallel:
+    matrix:
+        - IDF_VERSION: "5.1"
+  tags:
+    - esp32s3
+    - esp32s3_lcd_ev
+  image: $DOCKER_TARGET_TEST_v5_1_ENV_IMAGE
+  variables:
+    TEST_TARGET: esp32s3
+    TEST_FOLDER: components/display/lcd/esp_lcd_st77916
+    TEST_ENV: esp32_s3_lcd_ev_board
+
+components_test_esp_lcd_st77922:
+  extends:
+    - .pytest_template
+    - .rules:build:components_display_lcd_esp_lcd_st77922_test_apps
+  needs:
+    - job: "build_components_display_lcd_esp_lcd_st77922_test_apps"
+      artifacts: true
+      optional: false
+  parallel:
+    matrix:
+        - IDF_VERSION: "5.1"
+  tags:
+    - esp32s3
+    - esp32s3_lcd_ev
+  image: $DOCKER_TARGET_TEST_v5_1_ENV_IMAGE
+  variables:
+    TEST_TARGET: esp32s3
+    TEST_FOLDER: components/display/lcd/esp_lcd_st77922
+    TEST_ENV: esp32_s3_lcd_ev_board
+
+components_led_lightbulb_driver_test:
+  extends:
+    - .pytest_template
+    - .rules:build:components_led_lightbulb_driver_test_apps
+  needs:
+    - job: "build_components_led_lightbulb_driver_test_apps"
+      artifacts: true
+      optional: true
+  parallel:
+    matrix:
+      - IDF_TARGET: esp32s2
+        IDF_VERSION: "4.4"
+      - IDF_TARGET: esp32s3
+        IDF_VERSION: "4.4"
+      - IDF_TARGET: esp32s2
+        IDF_VERSION: "5.0"
+      - IDF_TARGET: esp32s3
+        IDF_VERSION: "5.0"
+      - IDF_TARGET: esp32s2
+        IDF_VERSION: "5.1"
+      - IDF_TARGET: esp32s3
+        IDF_VERSION: "5.1"
+  tags:
+    - ${IDF_TARGET}
+    - generic
+  image: $DOCKER_TARGET_TEST_v5_1_ENV_IMAGE
+  variables:
+    TEST_TARGET: ${IDF_TARGET}
+    TEST_FOLDER: components/led/lightbulb_driver
+    TEST_ENV: generic
+
+example_lighting_lightbulb:
+  extends:
+    - .pytest_template
+    - .rules:build:example_lighting_lightbulb
+  needs:
+    - job: "build_example_lighting_lightbulb"
+      artifacts: true
+      optional: true
+  parallel:
+    matrix:
+      - IDF_TARGET: esp32s2
+        IDF_VERSION: "5.1"
+      - IDF_TARGET: esp32s3
+        IDF_VERSION: "5.1"
+  tags:
+    - ${IDF_TARGET}
+  image: $DOCKER_TARGET_TEST_v5_1_ENV_IMAGE
+  variables:
+    TEST_TARGET: ${IDF_TARGET}
+    TEST_FOLDER: examples/lighting/lightbulb
+
+examples_test_usb_uf2_nvs:
+  extends:
+    - .pytest_template
+    - .rules:build:example_usb_device_usb_uf2_nvs
+  needs:
+    - job: "build_example_usb_device_usb_uf2_nvs"
+      artifacts: true
+      optional: true
+  parallel:
+    matrix:
+      - IDF_TARGET: esp32s3
+        IDF_VERSION: "5.0"
+        ENV_TAG: usb-otg_camera
+      - IDF_TARGET: esp32s3
+        IDF_VERSION: "4.4"
+        ENV_TAG: usb-otg_camera
+  tags:
+    - ${IDF_TARGET}
+    - ${ENV_TAG}
+  image: $DOCKER_TARGET_TEST_v5_1_ENV_IMAGE
+  variables:
+    TEST_TARGET: ${IDF_TARGET}
+    TEST_FOLDER: examples/usb/device/usb_uf2_nvs
+    TEST_ENV: ${ENV_TAG}
+
+examples_test_usb_uf2_ota:
+  extends:
+    - .pytest_template
+    - .rules:build:example_usb_device_usb_uf2_ota
+  needs:
+    - job: "build_example_usb_device_usb_uf2_ota"
+      artifacts: true
+      optional: true
+  parallel:
+    matrix:
+      - IDF_TARGET: esp32s3
+        IDF_VERSION: "5.0"
+        ENV_TAG: usb-otg_camera
+      - IDF_TARGET: esp32s3
+        IDF_VERSION: "4.4"
+        ENV_TAG: usb-otg_camera
+  tags:
+    - ${IDF_TARGET}
+    - ${ENV_TAG}
+  image: $DOCKER_TARGET_TEST_v5_1_ENV_IMAGE
+  variables:
+    TEST_TARGET: ${IDF_TARGET}
+    TEST_FOLDER: examples/usb/device/usb_uf2_ota
+    TEST_ENV: ${ENV_TAG}
+
+components_test_zero_detection:
+  extends:
+    - .pytest_template
+    - .rules:build:components_zero_detection_test_apps
+  needs:
+    - job: "build_components_zero_detection_test_apps"
+      artifacts: true
+      optional: true
+  parallel:
+    matrix:
+      - IDF_TARGET: esp32s3
+        IDF_VERSION: "5.0"
+        ENV_TAG: zero_detection
+      - IDF_TARGET: esp32s3
+        IDF_VERSION: "5.1"
+        ENV_TAG: zero_detection
+      - IDF_TARGET: esp32c3
+        IDF_VERSION: "5.0"
+        ENV_TAG: zero_detection
+      - IDF_TARGET: esp32c3
+        IDF_VERSION: "5.1"
+        ENV_TAG: zero_detection
+  tags:
+    - ${IDF_TARGET}
+    - ${ENV_TAG}
+  image: $DOCKER_TARGET_TEST_v5_1_ENV_IMAGE
+  variables:
+    TEST_TARGET: ${IDF_TARGET}
+    TEST_FOLDER: components/zero_detection
+    TEST_ENV: ${ENV_TAG}
+
+tools_test_cmake_utilities:
+  extends:
+    - .pytest_template
+    - .rules:build:tools_cmake_utilities_test_apps
+  needs:
+    - job: "build_tools_cmake_utilities_test_apps"
+      artifacts: true
+      optional: true
+  parallel:
+    matrix:
+      - IDF_TARGET: esp32s3
+        IDF_VERSION: "4.4"
+      - IDF_TARGET: esp32s3
+        IDF_VERSION: "5.0"
+  tags:
+    - ${IDF_TARGET}
+  image: $DOCKER_TARGET_TEST_v5_1_ENV_IMAGE
+  variables:
+    TEST_TARGET: ${IDF_TARGET}
+    TEST_FOLDER: tools/cmake_utilities

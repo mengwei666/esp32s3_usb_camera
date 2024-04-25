@@ -1,0 +1,16 @@
+if BOARD_ESP32_MESHKIT_SENSE
+
+    config BOARD_POWER_SENSOR
+        bool "power on sensors during board init"
+        default y
+        select BOARD_GPIO_INIT
+        help
+            if enable, sensors' power switch will be on during board init.
+    config BOARD_POWER_SCREEN
+        bool "power on screen during board init"
+        default y
+        select BOARD_GPIO_INIT
+        help
+            if enable, screen's power switch will be on during board init.
+
+endif #BOARD_ESP32_MESHKIT_SENSE

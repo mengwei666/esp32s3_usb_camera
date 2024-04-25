@@ -1,0 +1,31 @@
+variables:
+  ESP_IDF_DOC_ENV_IMAGE: "$CI_DOCKER_REGISTRY/esp-idf-doc-env-v5.2:1-1"
+
+.build_docs_template:
+  image: $ESP_IDF_DOC_ENV_IMAGE
+  stage: build_docs
+  tags:
+    - build_docs
+  dependencies: []
+  script:
+    - cd docs
+    - python -m pip install -r requirements.txt
+    - build-docs -bs $DOC_BUILDERS -l $DOCLANG build
+    - ./check_lang_folder_sync.sh
+
+build_docs_html:
+  extends:
+    - .build_docs_template
+    - .rules:build:docs
+  artifacts:
+    when: always
+    paths:
+      - docs/_build/*/*/*.txt
+      - docs/_build/*/*/html/*
+    expire_in: 4 days
+  variables:
+    DOC_BUILDERS: "html"
+  parallel:
+    matrix:
+      - DOCLANG: "en"
+      - DOCLANG: "zh_CN"
