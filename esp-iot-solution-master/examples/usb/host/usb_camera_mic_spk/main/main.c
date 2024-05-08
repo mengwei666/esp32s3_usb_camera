@@ -252,13 +252,11 @@ void app_main(void)
         .frame_cb = &camera_frame_cb,
         .frame_cb_arg = NULL,
     };
-
     /* config to enable uvc function */
     ret = uvc_streaming_config(&uvc_config);
     if (ret != ESP_OK) {
         ESP_LOGE(TAG, "uvc streaming config failed");
     }
-    ESP_LOGE(TAG, "-------------------------------------uvc streaming config failed %d -------------------------------------------------------", ret);
 #endif
 
 #if (ENABLE_UAC_MIC_SPK_FUNCTION)
