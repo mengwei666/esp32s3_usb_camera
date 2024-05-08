@@ -13,11 +13,31 @@
 > idf.py -p /dev/ttyUSB0 flash
 > idf.py -p /dev/ttyUSB0 monitor
 > 
+> /*查看当前用户信息*/
+> git config --global user.name
+> git config --global user.email
+> 
+> /*设置Git的用户信息（用户名和邮箱）*/
+> git config --global user.name "Your Name"
+> git config --global user.email "your_email@example.com"
+> 
+> /*
+> mw@mw:~/git$ git config --global user.name
+> mw
+> mw@mw:~/git$ git config --global user.email
+> 1142364819@qq.com
+> mw@mw:~/git$ git config --global user.name "mengwei666"
+> mw@mw:~/git$ git config --global user.name
+> mengwei666
+> */
+> 
+> 
 > 
 > git add README.md //添加README.md
 > git commit -m "add readme three" //添加提交内容
 > git branch -M main //添加到的分支
 > git push -u origin main //上传添加修改的文件 填写账号名和个人令牌
+> 
 > 
 > git status //状态查看
 > git add . //追踪
@@ -57,11 +77,11 @@ idf.py -p /dev/ttyUSB0 monitor
 
 将sdkconfig文件夹下的960行 改为CONFIG_ESP_CONSOLE_UART_BAUDRATE=115200
 
-![](img/2024-04-25 15-21-27 的屏幕截图.png)
+![](img/2.png)
 
 更新后打印信息为这个，则代表获取到图像信息了
 
-![](img/2024-05-08 10-31-38 的屏幕截图.png)
+![](img/3.png)
 
 ## 2.wifi启用设置：
 
@@ -75,11 +95,11 @@ idf.py -p /dev/ttyUSB0 monitor
 > #define ENABLE_UVC_WIFI_XFER              1        /* transfer uvc frame to wifi http */
 > ```
 
-![](img/2024-04-25 15-24-17 的屏幕截图.png)
+![](img/4.png)
 
 ## 3.启动分区设置：
 
-![](img/2024-04-25 15-26-08 的屏幕截图.png)
+![](img/5.png)
 
 ## 4.摄像头识别问题：
 
@@ -106,7 +126,7 @@ wifi设置后电脑应该可以搜索到
 
 用手机连接wifi后在浏览器输入192.168.4.1，就可以看到如下图
 
-![](img/4.jpeg)
+![](img/6.jpeg)
 
 6.图像显示不全问题：
 
