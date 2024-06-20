@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+/home/mw/git/esp32s3_usb_camera/usb_camera_mic_spk/build/CMakeFiles/bootloader
+/home/mw/git/esp32s3_usb_camera/usb_camera_mic_spk/build/CMakeFiles/bootloader.rule
+/home/mw/git/esp32s3_usb_camera/usb_camera_mic_spk/build/CMakeFiles/bootloader-complete.rule
+/home/mw/git/esp32s3_usb_camera/usb_camera_mic_spk/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+/home/mw/git/esp32s3_usb_camera/usb_camera_mic_spk/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+/home/mw/git/esp32s3_usb_camera/usb_camera_mic_spk/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+/home/mw/git/esp32s3_usb_camera/usb_camera_mic_spk/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule
+/home/mw/git/esp32s3_usb_camera/usb_camera_mic_spk/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+/home/mw/git/esp32s3_usb_camera/usb_camera_mic_spk/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+/home/mw/git/esp32s3_usb_camera/usb_camera_mic_spk/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule

@@ -1,0 +1,21 @@
+dependencies:
+  espressif/cmake_utilities:
+    component_hash: 351350613ceafba240b761b4ea991e0f231ac7a9f59a9ee901f751bddc0bb18f
+    source:
+      service_url: https://api.components.espressif.com/
+      type: service
+    version: 0.5.3
+  idf:
+    component_hash: null
+    source:
+      type: idf
+    version: 5.1.3
+  usb_stream:
+    component_hash: null
+    source:
+      path: /home/mw/git/esp32s3_usb_camera/usb_camera_mic_spk/components/usb_stream
+      type: local
+    version: 1.3.2
+manifest_hash: 24b0368db73a88facc2a1a5387d3982a3b38544c3007e8fc0e65c97cd4ce2a8d
+target: esp32s3
+version: 1.0.0

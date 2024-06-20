@@ -1,1 +1,0 @@
-.. include:: ../../../zh_CN/motor/bldc/bldc_overview.rst

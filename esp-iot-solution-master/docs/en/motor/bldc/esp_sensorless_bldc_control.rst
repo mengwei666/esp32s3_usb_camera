@@ -1,1 +1,0 @@
-.. include:: ../../../zh_CN/motor/bldc/esp_sensorless_bldc_control.rst

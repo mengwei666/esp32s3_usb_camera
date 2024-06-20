@@ -136,3 +136,29 @@ wifi设置后电脑应该可以搜索到
 > sudo apt install guvcview 安装
 > guvcview 打开
 > ```
+
+```
+Wireshark
+```
+
+# 3移植
+
+1.简化文件夹内容
+
+1.1解压官方文件（esp-iot-solution-master）提取出usb_camera_mic_spk
+
+1.2打开usb_camera_mic_spk文件中的main将idf_component.yml里的override_path:屏蔽掉
+
+如下图：
+
+![2024-06-20 11-01-54 的屏幕截图](img/2024-06-20 11-01-54 的屏幕截图.png)
+
+1.3将屏蔽掉的文件移植到项目文件中的components中
+
+```
+override_path: "../../../../../components/usb/usb_stream"
+```
+
+1.3重复2.开发过程
+
+1.4编译下载测试成功。
