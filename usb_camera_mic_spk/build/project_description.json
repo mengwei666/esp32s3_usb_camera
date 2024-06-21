@@ -1,7 +1,7 @@
 {
     "version":            "1",
     "project_name":       "usb_camera_mic_spk",
-    "project_version":    "14fe4bd-dirty",
+    "project_version":    "f6d80c3-dirty",
     "project_path":       "/home/mw/git/esp32s3_usb_camera/usb_camera_mic_spk",
     "idf_path":           "/home/mw/esp/esp-idf",
     "build_dir":          "/home/mw/git/esp32s3_usb_camera/usb_camera_mic_spk/build",
@@ -791,7 +791,7 @@
             "managed_priv_reqs": [],
             "file": "/home/mw/git/esp32s3_usb_camera/usb_camera_mic_spk/build/esp-idf/main/libmain.a",
             "sources": [ "/home/mw/git/esp32s3_usb_camera/usb_camera_mic_spk/main/main.c" ],
-            "include_dirs": [ ".", "esp_camera" ]
+            "include_dirs": [ "." ]
         },
         "mbedtls": {
             "alias": "idf::mbedtls",
@@ -1091,7 +1091,7 @@
             "managed_priv_reqs": [],
             "file": "/home/mw/git/esp32s3_usb_camera/usb_camera_mic_spk/build/esp-idf/usb_stream/libusb_stream.a",
             "sources": [ "/home/mw/git/esp32s3_usb_camera/usb_camera_mic_spk/components/usb_stream/usb_stream.c", "/home/mw/git/esp32s3_usb_camera/usb_camera_mic_spk/components/usb_stream/descriptor.c", "/home/mw/git/esp32s3_usb_camera/usb_camera_mic_spk/components/usb_stream/usb_host_helpers.c" ],
-            "include_dirs": [ "include", "/home/mw/esp/esp-idf/components/usb/include" ]
+            "include_dirs": [ "include", "/home/mw/esp/esp-idf/components/usb/include", "esp_camera" ]
         },
         "vfs": {
             "alias": "idf::vfs",
