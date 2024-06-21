@@ -404,21 +404,11 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/mw/git/esp32s3_usb_camera/usb_camera_mic_spk/build/esp-idf/espressif__cmake_utilities/cmake_install.cmake")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
-  include("/home/mw/git/esp32s3_usb_camera/usb_camera_mic_spk/build/esp-idf/usb_stream/cmake_install.cmake")
-endif()
-
-if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  # Include the install script for the subdirectory.
   include("/home/mw/git/esp32s3_usb_camera/usb_camera_mic_spk/build/esp-idf/main/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/home/mw/git/esp32s3_usb_camera/usb_camera_mic_spk/build/esp-idf/xfer_http/cmake_install.cmake")
+  include("/home/mw/git/esp32s3_usb_camera/usb_camera_mic_spk/build/esp-idf/usb_stream/cmake_install.cmake")
 endif()
 

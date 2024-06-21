@@ -4,3 +4,6 @@ cmake_minimum_required(VERSION 3.5)
 
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
 project(usb_camera_mic_spk)
+
+# 设置组件路径
+set(EXTRA_COMPONENT_DIRS components/usb_stream)

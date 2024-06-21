@@ -62,6 +62,5 @@
 /home/mw/git/esp32s3_usb_camera/usb_camera_mic_spk/build/esp-idf/ulp/libulp.a
 /home/mw/git/esp32s3_usb_camera/usb_camera_mic_spk/build/esp-idf/usb/libusb.a
 /home/mw/git/esp32s3_usb_camera/usb_camera_mic_spk/build/esp-idf/wifi_provisioning/libwifi_provisioning.a
-/home/mw/git/esp32s3_usb_camera/usb_camera_mic_spk/build/esp-idf/usb_stream/libusb_stream.a
 /home/mw/git/esp32s3_usb_camera/usb_camera_mic_spk/build/esp-idf/main/libmain.a
-/home/mw/git/esp32s3_usb_camera/usb_camera_mic_spk/build/esp-idf/xfer_http/libxfer_http.a
+/home/mw/git/esp32s3_usb_camera/usb_camera_mic_spk/build/esp-idf/usb_stream/libusb_stream.a

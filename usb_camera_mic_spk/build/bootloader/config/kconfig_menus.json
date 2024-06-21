@@ -7541,10 +7541,7 @@
                         "help": "This GPIO is used for console UART TX output in the ESP-IDF Bootloader and the app (including\nboot log output and default standard output and standard error of the app).\n\nIf the configuration is different in the Bootloader binary compared to the app binary, UART\nis reconfigured after the bootloader exits and the app starts.",
                         "id": "ESP_CONSOLE_UART_TX_GPIO",
                         "name": "ESP_CONSOLE_UART_TX_GPIO",
-                        "range": [
-                            0,
-                            46
-                        ],
+                        "range": null,
                         "title": "UART TX on GPIO#",
                         "type": "int"
                     },
@@ -7554,10 +7551,7 @@
                         "help": "This GPIO is used for UART RX input in the ESP-IDF Bootloader and the app (including\ndefault default standard input of the app).\n\nNote: The default ESP-IDF Bootloader configures this pin but doesn't read anything from the UART.\n\nIf the configuration is different in the Bootloader binary compared to the app binary, UART\nis reconfigured after the bootloader exits and the app starts.",
                         "id": "ESP_CONSOLE_UART_RX_GPIO",
                         "name": "ESP_CONSOLE_UART_RX_GPIO",
-                        "range": [
-                            0,
-                            46
-                        ],
+                        "range": null,
                         "title": "UART RX on GPIO#",
                         "type": "int"
                     },

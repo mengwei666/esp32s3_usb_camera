@@ -12,7 +12,6 @@ file(REMOVE_RECURSE
   "flash_bootloader_args"
   "flash_project_args"
   "flasher_args.json"
-  "index_uvc.html.gz.S"
   "ldgen_libraries"
   "ldgen_libraries.in"
   "project_elf_src_esp32s3.c"

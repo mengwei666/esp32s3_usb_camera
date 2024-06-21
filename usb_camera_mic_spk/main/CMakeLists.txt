@@ -1,2 +1,2 @@
-idf_component_register(SRCS main.c wave_1ch_16bits.c
-                    INCLUDE_DIRS ".")
+idf_component_register(SRCS main.c
+                    INCLUDE_DIRS "." "esp_camera")

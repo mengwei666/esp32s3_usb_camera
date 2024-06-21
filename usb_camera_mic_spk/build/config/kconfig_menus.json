@@ -16503,10 +16503,7 @@
                         "help": "This GPIO is used for console UART TX output in the ESP-IDF Bootloader and the app (including\nboot log output and default standard output and standard error of the app).\n\nIf the configuration is different in the Bootloader binary compared to the app binary, UART\nis reconfigured after the bootloader exits and the app starts.",
                         "id": "ESP_CONSOLE_UART_TX_GPIO",
                         "name": "ESP_CONSOLE_UART_TX_GPIO",
-                        "range": [
-                            0,
-                            46
-                        ],
+                        "range": null,
                         "title": "UART TX on GPIO#",
                         "type": "int"
                     },
@@ -16516,10 +16513,7 @@
                         "help": "This GPIO is used for UART RX input in the ESP-IDF Bootloader and the app (including\ndefault default standard input of the app).\n\nNote: The default ESP-IDF Bootloader configures this pin but doesn't read anything from the UART.\n\nIf the configuration is different in the Bootloader binary compared to the app binary, UART\nis reconfigured after the bootloader exits and the app starts.",
                         "id": "ESP_CONSOLE_UART_RX_GPIO",
                         "name": "ESP_CONSOLE_UART_RX_GPIO",
-                        "range": [
-                            0,
-                            46
-                        ],
+                        "range": null,
                         "title": "UART RX on GPIO#",
                         "type": "int"
                     },
@@ -20982,7 +20976,7 @@
                         "id": "LWIP_TCPIP_TASK_STACK_SIZE",
                         "name": "LWIP_TCPIP_TASK_STACK_SIZE",
                         "range": [
-                            2560,
+                            2048,
                             65536
                         ],
                         "title": "TCP/IP Task Stack Size",
@@ -26327,204 +26321,6 @@
                 "depends_on": null,
                 "id": "component-config-usb-stream",
                 "title": "USB Stream",
-                "type": "menu"
-            },
-            {
-                "children": [
-                    {
-                        "children": [],
-                        "depends_on": null,
-                        "help": "WiFi SSID (network name) to connect to or empty for Off.",
-                        "id": "ESP_WIFI_SSID",
-                        "name": "ESP_WIFI_SSID",
-                        "range": null,
-                        "title": "WiFi STA SSID",
-                        "type": "string"
-                    },
-                    {
-                        "children": [],
-                        "depends_on": null,
-                        "help": "WiFi Password if WEP/WPA/WPA2 or empty if Open.",
-                        "id": "ESP_WIFI_PASSWORD",
-                        "name": "ESP_WIFI_PASSWORD",
-                        "range": null,
-                        "title": "WiFi STA Password",
-                        "type": "string"
-                    },
-                    {
-                        "children": [],
-                        "depends_on": null,
-                        "help": "AP SSID (network name) to create or empty for Off.",
-                        "id": "ESP_WIFI_AP_SSID",
-                        "name": "ESP_WIFI_AP_SSID",
-                        "range": null,
-                        "title": "WiFi AP SSID",
-                        "type": "string"
-                    },
-                    {
-                        "children": [],
-                        "depends_on": null,
-                        "help": "AP password for WPA2 or empty for Open.",
-                        "id": "ESP_WIFI_AP_PASSWORD",
-                        "name": "ESP_WIFI_AP_PASSWORD",
-                        "range": null,
-                        "title": "WiFi AP Password",
-                        "type": "string"
-                    },
-                    {
-                        "children": [],
-                        "depends_on": null,
-                        "help": "Max number of the STA connects to AP.",
-                        "id": "MAX_STA_CONN",
-                        "name": "MAX_STA_CONN",
-                        "range": null,
-                        "title": "Maximal STA connections",
-                        "type": "int"
-                    },
-                    {
-                        "children": [],
-                        "depends_on": null,
-                        "help": "AP channel for better connection performance.",
-                        "id": "ESP_WIFI_AP_CHANNEL",
-                        "name": "ESP_WIFI_AP_CHANNEL",
-                        "range": null,
-                        "title": "WiFi AP Channel",
-                        "type": "string"
-                    },
-                    {
-                        "children": [],
-                        "depends_on": null,
-                        "help": "IP address that the ESP will assign to it's AP interface. You can use this IP to connect to the camera after flashing.",
-                        "id": "SERVER_IP",
-                        "name": "SERVER_IP",
-                        "range": null,
-                        "title": "WiFi AP IP Address",
-                        "type": "string"
-                    },
-                    {
-                        "children": [],
-                        "depends_on": null,
-                        "help": "Set the Maximum retry to avoid station reconnecting to the AP unlimited when the AP is really inexistent.",
-                        "id": "ESP_MAXIMUM_RETRY",
-                        "name": "ESP_MAXIMUM_RETRY",
-                        "range": null,
-                        "title": "Maximum retry",
-                        "type": "int"
-                    }
-                ],
-                "depends_on": null,
-                "id": "component-config-http-transfer-settings",
-                "title": "HTTP Transfer Settings",
-                "type": "menu"
-            },
-            {
-                "children": [
-                    {
-                        "children": [
-                            {
-                                "children": [],
-                                "depends_on": "CU_RELINKER_ENABLE",
-                                "help": "\"Enable this option to print error information instead of\n    throwing exception when missing function\"",
-                                "id": "CU_RELINKER_ENABLE_PRINT_ERROR_INFO_WHEN_MISSING_FUNCTION",
-                                "name": "CU_RELINKER_ENABLE_PRINT_ERROR_INFO_WHEN_MISSING_FUNCTION",
-                                "range": null,
-                                "title": "Print error information when missing function",
-                                "type": "bool"
-                            },
-                            {
-                                "children": [
-                                    {
-                                        "children": [],
-                                        "depends_on": "CU_RELINKER_ENABLE_CUSTOMIZED_CONFIGURATION_FILES && CU_RELINKER_ENABLE",
-                                        "help": "\"Customized relinker configuration files path. This path is\nevaluated relative to the project root directory.\"",
-                                        "id": "CU_RELINKER_CUSTOMIZED_CONFIGURATION_FILES_PATH",
-                                        "name": "CU_RELINKER_CUSTOMIZED_CONFIGURATION_FILES_PATH",
-                                        "range": null,
-                                        "title": "Customized relinker configuration files path",
-                                        "type": "string"
-                                    }
-                                ],
-                                "depends_on": "CU_RELINKER_ENABLE",
-                                "help": "\"Enable this option to use customized relinker configuration\nfiles instead of default ones\"",
-                                "id": "CU_RELINKER_ENABLE_CUSTOMIZED_CONFIGURATION_FILES",
-                                "name": "CU_RELINKER_ENABLE_CUSTOMIZED_CONFIGURATION_FILES",
-                                "range": null,
-                                "title": "Enable customized relinker configuration files",
-                                "type": "bool"
-                            }
-                        ],
-                        "depends_on": null,
-                        "help": "\"Enable relinker to linker some IRAM functions to Flash\"",
-                        "id": "CU_RELINKER_ENABLE",
-                        "name": "CU_RELINKER_ENABLE",
-                        "range": null,
-                        "title": "Enable relinker",
-                        "type": "bool"
-                    },
-                    {
-                        "children": [
-                            {
-                                "children": [],
-                                "depends_on": "<choice CU_DIAGNOSTICS_COLOR>",
-                                "help": null,
-                                "id": "CU_DIAGNOSTICS_COLOR_NEVER",
-                                "name": "CU_DIAGNOSTICS_COLOR_NEVER",
-                                "range": null,
-                                "title": "never",
-                                "type": "bool"
-                            },
-                            {
-                                "children": [],
-                                "depends_on": "<choice CU_DIAGNOSTICS_COLOR>",
-                                "help": null,
-                                "id": "CU_DIAGNOSTICS_COLOR_ALWAYS",
-                                "name": "CU_DIAGNOSTICS_COLOR_ALWAYS",
-                                "range": null,
-                                "title": "always",
-                                "type": "bool"
-                            },
-                            {
-                                "children": [],
-                                "depends_on": "<choice CU_DIAGNOSTICS_COLOR>",
-                                "help": null,
-                                "id": "CU_DIAGNOSTICS_COLOR_AUTO",
-                                "name": "CU_DIAGNOSTICS_COLOR_AUTO",
-                                "range": null,
-                                "title": "auto",
-                                "type": "bool"
-                            }
-                        ],
-                        "depends_on": null,
-                        "help": "Use color in diagnostics. \"never\", \"always\", or \"auto\". If \"always\", GCC will output\nwith color defined in GCC_COLORS environment variable. If \"never\", only output plain\ntext. If \"auto\", only output with color when the standard error is a terminal and when\nnot executing in an emacs shell.",
-                        "id": "component-config-cmake-utilities-color-in-diagnostics",
-                        "name": "CU_DIAGNOSTICS_COLOR",
-                        "title": "Color in diagnostics",
-                        "type": "choice"
-                    },
-                    {
-                        "children": [],
-                        "depends_on": null,
-                        "help": "\"Enable this option, users can enable GCC link time optimization(LTO)\n feature for target components or dependencies.",
-                        "id": "CU_GCC_LTO_ENABLE",
-                        "name": "CU_GCC_LTO_ENABLE",
-                        "range": null,
-                        "title": "Enable GCC link time optimization(LTO)",
-                        "type": "bool"
-                    },
-                    {
-                        "children": [],
-                        "depends_on": null,
-                        "help": "\"Enable this option, user can make string in designated components align\n by 1-byte instead 1-word(4-byte), this can reduce unnecessary filled data\n so that to reduce firmware size.\"",
-                        "id": "CU_GCC_STRING_1BYTE_ALIGN",
-                        "name": "CU_GCC_STRING_1BYTE_ALIGN",
-                        "range": null,
-                        "title": "GCC string 1-byte align",
-                        "type": "bool"
-                    }
-                ],
-                "depends_on": null,
-                "id": "component-config-cmake-utilities",
-                "title": "CMake Utilities",
                 "type": "menu"
             }
         ],

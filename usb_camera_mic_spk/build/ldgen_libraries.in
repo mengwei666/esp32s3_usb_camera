@@ -62,6 +62,5 @@ $<TARGET_FILE:__idf_touch_element>
 $<TARGET_FILE:__idf_ulp>
 $<TARGET_FILE:__idf_usb>
 $<TARGET_FILE:__idf_wifi_provisioning>
-$<TARGET_FILE:__idf_usb_stream>
 $<TARGET_FILE:__idf_main>
-$<TARGET_FILE:__idf_xfer_http>
+$<TARGET_FILE:__idf_usb_stream>
