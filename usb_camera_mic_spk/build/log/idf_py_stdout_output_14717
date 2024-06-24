@@ -1,0 +1,283 @@
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x29 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce3818,len:0x1758
+load:0x403c9700,len:0x4
+load:0x403c9704,len:0xc00
+load:0x403cc700,len:0x2e04
+entry 0x403c9908
+[0;32mI (27) boot: ESP-IDF v5.1.3-dirty 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Jun 21 2024 17:56:08[0m
+[0;32mI (27) boot: Multicore bootloader[0m
+[0;32mI (30) boot: chip revision: v0.1[0m
+[0;32mI (34) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (39) boot.esp32s3: SPI Mode       : DIO[0m
+[0;32mI (44) boot.esp32s3: SPI Flash Size : 2MB[0m
+[0;32mI (49) boot: Enabling RNG early entropy source...[0m
+[0;32mI (54) boot: Partition Table:[0m
+[0;32mI (58) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (65) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (72) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (80) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (87) boot: End of partition table[0m
+[0;32mI (91) esp_image: segment 0: paddr=00010020 vaddr=3c030020 size=0f7b8h ( 63416) map[0m
+[0;32mI (111) esp_image: segment 1: paddr=0001f7e0 vaddr=3fc93a00 size=00838h (  2104) load[0m
+[0;32mI (112) esp_image: segment 2: paddr=00020020 vaddr=42000020 size=22f7ch (143228) map[0m
+[0;32mI (143) esp_image: segment 3: paddr=00042fa4 vaddr=3fc94238 size=02314h (  8980) load[0m
+[0;32mI (145) esp_image: segment 4: paddr=000452c0 vaddr=40374000 size=0f908h ( 63752) load[0m
+[0;32mI (169) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (169) boot: Disabling RNG early entropy source...[0m
+[0;32mI (180) cpu_start: Multicore app[0m
+[0;32mI (181) cpu_start: Pro cpu up.[0m
+[0;32mI (181) cpu_start: Starting app cpu, entry point is 0x4037548c[0m
+[0;32mI (0) cpu_start: App cpu up.[0m
+[0;32mI (199) cpu_start: Pro cpu start user code[0m
+[0;32mI (199) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (199) cpu_start: Application information:[0m
+[0;32mI (202) cpu_start: Project name:     usb_camera_mic_spk[0m
+[0;32mI (208) cpu_start: App version:      1c30950-dirty[0m
+[0;32mI (213) cpu_start: Compile time:     Jun 24 2024 09:48:29[0m
+[0;32mI (219) cpu_start: ELF file SHA256:  660e8a3a375384d5...[0m
+[0;32mI (225) cpu_start: ESP-IDF:          v5.1.3-dirty[0m
+[0;32mI (231) cpu_start: Min chip rev:     v0.0[0m
+[0;32mI (235) cpu_start: Max chip rev:     v0.99 [0m
+[0;32mI (240) cpu_start: Chip rev:         v0.1[0m
+[0;32mI (245) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (252) heap_init: At 3FC96ED0 len 00052840 (330 KiB): DRAM[0m
+[0;32mI (258) heap_init: At 3FCE9710 len 00005724 (21 KiB): STACK/DRAM[0m
+[0;32mI (265) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (271) heap_init: At 600FE010 len 00001FD8 (7 KiB): RTCRAM[0m
+[0;32mI (278) spi_flash: detected chip: gd[0m
+[0;32mI (282) spi_flash: flash io: dio[0m
+[0;33mW (286) spi_flash: Detected size(8192k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (299) sleep: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (306) sleep: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (313) app_start: Starting scheduler on CPU0[0m
+[0;32mI (318) app_start: Starting scheduler on CPU1[0m
+[0;32mI (318) main_task: Started on CPU0[0m
+[0;32mI (328) main_task: Calling app_main()[0m
+[0;32mI (328) USB_STREAM: UVC Streaming Config Succeed, Version: 1.3.2[0m
+[0;32mI (338) uvc_mic_spk_demo: --------------------------#1-------------------------[0m
+[0;32mI (348) USB_STREAM: USB streaming callback register succeed[0m
+[0;32mI (348) uvc_mic_spk_demo: --------------------------#2.1-------------------------[0m
+[0;32mI (358) USB_STREAM: Pre-alloc ctrl urb succeed, size = 1024[0m
+[0;32mI (368) USB_STREAM: USB stream task start[0m
+[0;32mI (398) USB_STREAM: USB Streaming Start Succeed[0m
+[0;32mI (398) uvc_mic_spk_demo: --------------------------#2.2-------------------------[0m
+[0;32mI (398) USB_STREAM: Waiting USB Device Connection[0m
+[0;32mI (648) USB_STREAM: line 151 HCD_PORT_EVENT_CONNECTION[0m
+[0;32mI (648) USB_STREAM: Action: ACTION_DEVICE_CONNECT[0m
+[0;32mI (698) USB_STREAM: Resetting Port[0m
+[0;32mI (758) USB_STREAM: Setting Port FIFO, 1[0m
+[0;32mI (758) USB_STREAM: USB Speed: full-speed[0m
+[0;32mI (758) USB_STREAM: ENUM Stage START, Succeed[0m
+[0;32mI (768) USB_STREAM: ENUM Stage GET_SHORT_DEV_DESC, Succeed[0m
+[0;32mI (778) USB_STREAM: Default pipe endpoint MPS update to 64[0m
+[0;32mI (778) USB_STREAM: ENUM Stage CHECK_SHORT_DEV_DESC, Succeed[0m
+[0;32mI (788) USB_STREAM: ENUM Stage SET_ADDR, Succeed[0m
+[0;32mI (808) USB_STREAM: ENUM Stage CHECK_ADDR, Succeed[0m
+[0;32mI (818) USB_STREAM: ENUM Stage GET_FULL_DEV_DESC, Succeed[0m
+*** Device descriptor ***
+bcdUSB 2.00
+bDeviceClass 0xef
+bDeviceSubClass 0x2
+bDeviceProtocol 0x1
+bMaxPacketSize0 64
+idVendor 0xc45
+idProduct 0x6368
+bNumConfigurations 1
+[0;32mI (828) USB_STREAM: ENUM Stage CHECK_FULL_DEV_DESC, Succeed[0m
+[0;32mI (848) USB_STREAM: ENUM Stage GET_SHORT_CONFIG_DESC, Succeed[0m
+[0;32mI (858) USB_STREAM: ENUM Stage CHECK_SHORT_CONFIG_DESC, Succeed[0m
+[0;32mI (868) USB_STREAM: ENUM Stage GET_FULL_CONFIG_DESC, Succeed[0m
+*** Configuration descriptor ***
+wTotalLength 569
+bNumInterfaces 2
+bConfigurationValue 1
+*** Interface Association Descriptor: Video ***
+	*** Interface descriptor ***
+	bInterfaceNumber 0
+	bAlternateSetting 0
+	bNumEndpoints 1
+	bInterfaceClass 0xe (Video)
+	bInterfaceSubClass 0x1
+		*** Endpoint descriptor ***
+		bEndpointAddress 0x83	EP 3 IN
+		bmAttributes 0x3	INT
+		wMaxPacketSize 16
+		bInterval 6
+	*** Interface descriptor ***
+	bInterfaceNumber 1
+	bAlternateSetting 0
+	bNumEndpoints 0
+	bInterfaceClass 0xe (Video)
+	bInterfaceSubClass 0x2
+	*** Class-specific VS Interface Descriptor ***
+	bNumFormats 2
+	*** VS Format MJPEG Descriptor ***
+	bFormatIndex 0x1
+	bNumFrameDescriptors 4
+	bDefaultFrameIndex 1
+	*** VS MJPEG Frame Descriptor ***
+	bFrameIndex 0x1
+	wWidth 640
+	wHeigh 480
+	FrameInterval[0] 400000
+	FrameInterval[1] 500000
+	FrameInterval[2] 666666
+	FrameInterval[3] 1000000
+	FrameInterval[4] 2000000
+	*** VS MJPEG Frame Descriptor ***
+	bFrameIndex 0x2
+	wWidth 352
+	wHeigh 288
+	FrameInterval[0] 400000
+	FrameInterval[1] 500000
+	FrameInterval[2] 666666
+	FrameInterval[3] 1000000
+	FrameInterval[4] 2000000
+	*** VS MJPEG Frame Descriptor ***
+	bFrameIndex 0x3
+	wWidth 320
+	wHeigh 240
+	FrameInterval[0] 400000
+	FrameInterval[1] 500000
+	FrameInterval[2] 666666
+	FrameInterval[3] 1000000
+	FrameInterval[4] 2000000
+	*** VS MJPEG Frame Descriptor ***
+	bFrameIndex 0x4
+	wWidth 160
+	wHeigh 120
+	FrameInterval[0] 400000
+	FrameInterval[1] 500000
+	FrameInterval[2] 666666
+	FrameInterval[3] 1000000
+	FrameInterval[4] 2000000
+	*** Interface descriptor ***
+	bInterfaceNumber 1
+	bAlternateSetting 1
+	bNumEndpoints 1
+	bInterfaceClass 0xe (Video)
+	bInterfaceSubClass 0x2
+		*** Endpoint descriptor ***
+		bEndpointAddress 0x81	EP 1 IN
+		bmAttributes 0x5	ISOC
+		wMaxPacketSize 128
+		bInterval 1
+	*** Interface descriptor ***
+	bInterfaceNumber 1
+	bAlternateSetting 2
+	bNumEndpoints 1
+	bInterfaceClass 0xe (Video)
+	bInterfaceSubClass 0x2
+		*** Endpoint descriptor ***
+		bEndpointAddress 0x81	EP 1 IN
+		bmAttributes 0x5	ISOC
+		wMaxPacketSize 256
+		bInterval 1
+	*** Interface descriptor ***
+	bInterfaceNumber 1
+	bAlternateSetting 3
+	bNumEndpoints 1
+	bInterfaceClass 0xe (Video)
+	bInterfaceSubClass 0x2
+		*** Endpoint descriptor ***
+		bEndpointAddress 0x81	EP 1 IN
+		bmAttributes 0x5	ISOC
+		wMaxPacketSize 512
+		bInterval 1
+	*** Interface descriptor ***
+	bInterfaceNumber 1
+	bAlternateSetting 4
+	bNumEndpoints 1
+	bInterfaceClass 0xe (Video)
+	bInterfaceSubClass 0x2
+		*** Endpoint descriptor ***
+		bEndpointAddress 0x81	EP 1 IN
+		bmAttributes 0x5	ISOC
+		wMaxPacketSize 600
+		bInterval 1
+	*** Interface descriptor ***
+	bInterfaceNumber 1
+	bAlternateSetting 5
+	bNumEndpoints 1
+	bInterfaceClass 0xe (Video)
+	bInterfaceSubClass 0x2
+		*** Endpoint descriptor ***
+		bEndpointAddress 0x81	EP 1 IN
+		bmAttributes 0x5	ISOC
+		wMaxPacketSize 800
+		bInterval 1
+	*** Interface descriptor ***
+	bInterfaceNumber 1
+	bAlternateSetting 6
+	bNumEndpoints 1
+	bInterfaceClass 0xe (Video)
+	bInterfaceSubClass 0x2
+		*** Endpoint descriptor ***
+		bEndpointAddress 0x81	EP 1 IN
+		bmAttributes 0x5	ISOC
+		wMaxPacketSize 956
+		bInterval 1
+[0;32mI (1208) USB_STREAM: Actual VS Interface(MPS <= 512) found, interface = 1, alt = 3[0m
+[0;32mI (1218) USB_STREAM: 	Endpoint(ISOC) Addr = 0x81, MPS = 512[0m
+[0;32mI (1218) USB_STREAM: Actual MJPEG format index, format index = 1, contains 4 frames[0m
+[0;32mI (1228) USB_STREAM: Actual Frame: 7, width*heigh: 65535*65535, frame index = 1[0m
+[0;32mI (1238) USB_STREAM: ENUM Stage CHECK_FULL_CONFIG_DESC, Succeed[0m
+[0;32mI (1258) USB_STREAM: ENUM Stage SET_CONFIG, Succeed[0m
+[0;32mI (1268) uvc_mic_spk_demo: UVC: get frame list size = 4, current = 0[0m
+[0;32mI (1268) uvc_mic_spk_demo: 	frame[0] = 640x480[0m
+[0;32mI (1268) uvc_mic_spk_demo: 	frame[1] = 352x288[0m
+[0;32mI (1278) uvc_mic_spk_demo: 	frame[2] = 320x240[0m
+[0;32mI (1278) uvc_mic_spk_demo: 	frame[3] = 160x120[0m
+[0;32mI (1288) uvc_mic_spk_demo: Device connected[0m
+[0;32mI (1288) USB_STREAM: Probe Format(1), Frame(1) 640*480, interval(666666)[0m
+[0;32mI (1298) USB_STREAM: Probe payload size = 512[0m
+bFormatIndex: 1
+bFrameIndex: 1
+dwFrameInterval: 666666
+dwMaxPayloadTransferSize: 956
+bInterfaceNumber: 0
+[0;32mI (1358) USB_STREAM: dwMaxPayloadTransferSize set = 512, probed = 956[0m
+[0;32mI (1358) USB_STREAM: Sample processing task start[0m
+[0;32mI (1358) USB_STREAM: Set Device Interface = 1, Alt = 3[0m
+[0;32mI (1768) USB_STREAM: USB Device Connected[0m
+[0;32mI (2348) uvc_mic_spk_demo: uvc callback! frame_format = 7, seq = 1, width = 640, height = 480, length = 24088, ptr = 0[0m
+[0;32mI (2418) uvc_mic_spk_demo: uvc callback! frame_format = 7, seq = 2, width = 640, height = 480, length = 27216, ptr = 0[0m
+[0;32mI (2488) uvc_mic_spk_demo: uvc callback! frame_format = 7, seq = 3, width = 640, height = 480, length = 29640, ptr = 0[0m
+[0;32mI (2558) uvc_mic_spk_demo: uvc callback! frame_format = 7, seq = 4, width = 640, height = 480, length = 29920, ptr = 0[0m
+[0;32mI (2618) uvc_mic_spk_demo: uvc callback! frame_format = 7, seq = 5, width = 640, height = 480, length = 26752, ptr = 0[0m
+[0;32mI (2678) uvc_mic_spk_demo: uvc callback! frame_format = 7, seq = 6, width = 640, height = 480, length = 17192, ptr = 0[0m
+[0;32mI (2748) uvc_mic_spk_demo: uvc callback! frame_format = 7, seq = 7, width = 640, height = 480, length = 26040, ptr = 0[0m
+[0;32mI (2818) uvc_mic_spk_demo: uvc callback! frame_format = 7, seq = 8, width = 640, height = 480, length = 24656, ptr = 0[0m
+[0;32mI (2888) uvc_mic_spk_demo: uvc callback! frame_format = 7, seq = 9, width = 640, height = 480, length = 27104, ptr = 0[0m
+[0;32mI (2948) uvc_mic_spk_demo: uvc callback! frame_format = 7, seq = 10, width = 640, height = 480, length = 26304, ptr = 0[0m
+[0;32mI (3018) uvc_mic_spk_demo: uvc callback! frame_format = 7, seq = 11, width = 640, height = 480, length = 25400, ptr = 0[0m
+[0;32mI (3078) uvc_mic_spk_demo: uvc callback! frame_format = 7, seq = 12, width = 640, height = 480, length = 25256, ptr = 0[0m
+[0;32mI (3148) uvc_mic_spk_demo: uvc callback! frame_format = 7, seq = 13, width = 640, height = 480, length = 25160, ptr = 0[0m
+[0;32mI (3218) uvc_mic_spk_demo: uvc callback! frame_format = 7, seq = 14, width = 640, height = 480, length = 25200, ptr = 0[0m
+[0;32mI (3278) uvc_mic_spk_demo: uvc callback! frame_format = 7, seq = 15, width = 640, height = 480, length = 25032, ptr = 0[0m
+[0;32mI (3348) uvc_mic_spk_demo: uvc callback! frame_format = 7, seq = 16, width = 640, height = 480, length = 25040, ptr = 0[0m
+[0;32mI (3418) uvc_mic_spk_demo: uvc callback! frame_format = 7, seq = 17, width = 640, height = 480, length = 25080, ptr = 0[0m
+[0;32mI (3478) uvc_mic_spk_demo: uvc callback! frame_format = 7, seq = 18, width = 640, height = 480, length = 25136, ptr = 0[0m
+[0;32mI (3548) uvc_mic_spk_demo: uvc callback! frame_format = 7, seq = 19, width = 640, height = 480, length = 24976, ptr = 0[0m
+[0;32mI (3618) uvc_mic_spk_demo: uvc callback! frame_format = 7, seq = 20, width = 640, height = 480, length = 25048, ptr = 0[0m
+[0;32mI (3678) uvc_mic_spk_demo: uvc callback! frame_format = 7, seq = 21, width = 640, height = 480, length = 25200, ptr = 0[0m
+[0;32mI (3748) uvc_mic_spk_demo: uvc callback! frame_format = 7, seq = 22, width = 640, height = 480, length = 25024, ptr = 0[0m
+[0;32mI (3818) uvc_mic_spk_demo: uvc callback! frame_format = 7, seq = 23, width = 640, height = 480, length = 25056, ptr = 0[0m
+[0;32mI (3878) uvc_mic_spk_demo: uvc callback! frame_format = 7, seq = 24, width = 640, height = 480, length = 25144, ptr = 0[0m
+[0;32mI (3948) uvc_mic_spk_demo: uvc callback! frame_format = 7, seq = 25, width = 640, height = 480, length = 25072, ptr = 0[0m
+[0;32mI (4018) uvc_mic_spk_demo: uvc callback! frame_format = 7, seq = 26, width = 640, height = 480, length = 25024, ptr = 0[0m
+[0;32mI (4078) uvc_mic_spk_demo: uvc callback! frame_format = 7, seq = 27, width = 640, height = 480, length = 24984, ptr = 0[0m
+[0;32mI (4148) uvc_mic_spk_demo: uvc callback! frame_format = 7, seq = 28, width = 640, height = 480, length = 25080, ptr = 0[0m
+[0;32mI (4218) uvc_mic_spk_demo: uvc callback! frame_format = 7, seq = 29, width = 640, height = 480, length = 24968, ptr = 0[0m
+[0;32mI (4278) uvc_mic_spk_demo: uvc callback! frame_format = 7, seq = 30, width = 640, height = 480, length = 25192, ptr = 0[0m
+[0;32mI (4348) uvc_mic_spk_demo: uvc callback! frame_format = 7, seq = 31, width = 640, height = 480, length = 24960, ptr = 0[0m
+[0;32mI (4418) uvc_mic_spk_demo: uvc callback! frame_format = 7, seq = 32, width = 640, height = 480, length = 25040, ptr = 0[0m
+[0;32mI (4478) uvc_mic_spk_demo: uvc callback! frame_format = 7, seq = 33, width = 640, height = 480, length = 25136, ptr = 0[0m
+[0;32mI (4548) uvc_mic_spk_demo: uvc callback! frame_format = 7, seq = 34, width = 640, height = 480, length = 25200, ptr = 0[0m
+[0;32mI (4618) uvc_mic_spk_demo: uvc callback! frame_format = 7, seq = 35, width = 640, height = 480, length = 25144, ptr = 0[0m
+[0;32mI (4678) uvc_mic_spk_demo: uvc callback! frame_format = 7, seq = 36, width = 640, height = 480, length = 25216, ptr = 0[0m

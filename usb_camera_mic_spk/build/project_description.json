@@ -1,7 +1,7 @@
 {
     "version":            "1",
     "project_name":       "usb_camera_mic_spk",
-    "project_version":    "f6d80c3-dirty",
+    "project_version":    "1c30950-dirty",
     "project_path":       "/home/mw/git/esp32s3_usb_camera/usb_camera_mic_spk",
     "idf_path":           "/home/mw/esp/esp-idf",
     "build_dir":          "/home/mw/git/esp32s3_usb_camera/usb_camera_mic_spk/build",

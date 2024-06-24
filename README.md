@@ -162,3 +162,27 @@ override_path: "../../../../../components/usb/usb_stream"
 1.3重复2.开发过程
 
 1.4编译下载测试成功。
+
+# 4.再简化
+
+> 1.先展示简化后的内容
+>
+> ![2024-06-24 09-51-16 的屏幕截图](./img/2024-06-24 09-51-16 的屏幕截图.png)
+>
+> 2.main文件只有main.c文件，不再生成组件代码。components文件只剩下组件程序。实现步骤
+>
+> 修改components文件下的CMakeLists.txt文件，使其不使用包管理器，并删除yaml文件，修改成如下：
+>
+> ```
+> idf_component_register(SRCS "usb_stream.c" "descriptor.c" "usb_host_helpers.c"
+>                     INCLUDE_DIRS "include" "${IDF_PATH}/components/usb/include" "esp_camera"
+>                     PRIV_INCLUDE_DIRS "${IDF_PATH}/components/usb/private_include" "private_include"
+>                     REQUIRES usb esp_ringbuf)
+> # 定义版本宏
+> target_compile_definitions(${COMPONENT_LIB} PRIVATE 
+> USB_STREAM_VER_MAJOR=1
+> USB_STREAM_VER_MINOR=3
+> USB_STREAM_VER_PATCH=2)
+> ```
+
+# 5.移植到ANT200项目

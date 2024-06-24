@@ -954,3 +954,15 @@
 15355	15829	1718963776502694954	usb_camera_mic_spk.elf	1ad93dcfe737d4a5
 15829	15933	1718963776610697908	.bin_timestamp	a0a61c8d8c4b65ca
 15933	15961	0	esp-idf/esptool_py/CMakeFiles/app_check_size	2f402d997eaa7487
+179	7981	1719193708213708574	build.ninja	4369f27e7a52c117
+62	324	1718963767454447600	bootloader-prefix/src/bootloader-stamp/bootloader-build	6488dc130c51073f
+62	324	1718963767454447600	bootloader/bootloader.elf	6488dc130c51073f
+62	324	1718963767454447600	bootloader/bootloader.bin	6488dc130c51073f
+62	324	1718963767454447600	bootloader/bootloader.map	6488dc130c51073f
+62	1340	1719193709621742301	esp-idf/esp_app_format/CMakeFiles/__idf_esp_app_format.dir/esp_app_desc.c.obj	aac44827fc2f4dd4
+1340	1431	1719193709713744508	esp-idf/esp_app_format/libesp_app_format.a	aee15f9651728e39
+1431	6316	1719193714581861855	esp-idf/esp_system/ld/sections.ld	b158175ba7a43606
+6316	8068	1719193716325904162	usb_camera_mic_spk.elf	1ad93dcfe737d4a5
+8068	8203	1719193716485908051	.bin_timestamp	a0a61c8d8c4b65ca
+8203	8258	0	esp-idf/esptool_py/CMakeFiles/app_check_size	2f402d997eaa7487
+8258	14698	0	CMakeFiles/flash	1adbce2808fe5c
